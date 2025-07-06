@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veo 3 Prompt Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; padding: 0; }
+        label, select, button { display: block; margin-bottom: 15px; }
+        textarea { width: 100%; height: 200px; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <h1>Veo 3 Prompt Generator</h1>
+
+    <label for="quote">Select Quote:</label>
+    <select id="quote">
+        <option value="Push yourself, because no one else is going to do it for you.">Push yourself, because no one else is going to do it for you.</option>
+        <option value="The best time to plant a tree was 20 years ago. The second best time is now.">The best time to plant a tree was 20 years ago. The second best time is now.</option>
+        <option value="Don’t watch the clock; do what it does. Keep going.">Don’t watch the clock; do what it does. Keep going.</option>
+        <option value="Dream big and dare to fail.">Dream big and dare to fail.</option>
+        <option value="Great things never come from comfort zones.">Great things never come from comfort zones.</option>
+    </select>
+
+    <button onclick="generatePrompt()">Generate Prompt</button>
+
+    <textarea id="prompt" readonly></textarea>
+
+    <script>
+        function generatePrompt() {
+            const quote = document.getElementById('quote').value;
+
+            let mood = '';
+            let character = '';
+            let scene = '';
+            let music = '';
+
+            if (quote.includes('Push yourself')) {
+                mood = 'energetic';
+                character = 'a young adult man in sportswear, confident and motivated';
+                scene = 'an outdoor park during sunrise';
+                music = 'uplifting energetic background music';
+            } else if (quote.includes('plant a tree')) {
+                mood = 'hopeful';
+                character = 'a middle-aged woman gardening, peaceful and focused';
+                scene = 'a sunny backyard with green plants';
+                music = 'calm and positive background music';
+            } else if (quote.includes('Don’t watch the clock')) {
+                mood = 'motivational';
+                character = 'a young man walking briskly in a city street';
+                scene = 'a busy street in the morning';
+                music = 'inspiring rhythmic background music';
+            } else if (quote.includes('Dream big')) {
+                mood = 'inspirational';
+                character = 'a teenage girl looking at the sky with determination';
+                scene = 'a rooftop during sunset';
+                music = 'soaring inspirational background music';
+            } else {
+                mood = 'empowering';
+                character = 'an adult in casual clothes standing confidently';
+                scene = 'a wide open field under blue sky';
+                music = 'steady motivating background music';
+            }
+
+            const prompt = `Create a motivational video with a maximum duration allowed by Veo 3.
+
+The main character is ${character}.
+
+The setting is ${scene}, reflecting the mood: ${mood}.
+
+The character is performing simple movements like walking, standing, or natural gestures that match the quote.
+
+The voice-over narrates the following quote in Indonesian:
+"${quote}"
+
+Add ${music} that matches the scene.
+
+Use realistic cinematic animation style.
+
+Ensure the video language is Indonesian, matching the user’s preferred setting.`;
+
+            document.getElementById('prompt').value = prompt;
+        }
+    </script>
+</body>
+</html>
